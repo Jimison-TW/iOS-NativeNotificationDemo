@@ -12,6 +12,7 @@
 		42C836B1217F09BF00915F24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42C836AF217F09BF00915F24 /* Main.storyboard */; };
 		42C836B3217F09C000915F24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42C836B2217F09C000915F24 /* Assets.xcassets */; };
 		42C836B6217F09C000915F24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42C836B4217F09C000915F24 /* LaunchScreen.storyboard */; };
+		42C836BF217F0ED800915F24 /* DemoNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C836BE217F0ED800915F24 /* DemoNotificationDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,8 @@
 		42C836B2217F09C000915F24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42C836B5217F09C000915F24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42C836B7217F09C000915F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42C836BD217F0C0A00915F24 /* NativeNotificationTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NativeNotificationTest.entitlements; sourceTree = "<group>"; };
+		42C836BE217F0ED800915F24 /* DemoNotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoNotificationDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +57,14 @@
 		42C836AA217F09BF00915F24 /* NativeNotificationTest */ = {
 			isa = PBXGroup;
 			children = (
+				42C836BD217F0C0A00915F24 /* NativeNotificationTest.entitlements */,
 				42C836AB217F09BF00915F24 /* AppDelegate.swift */,
 				42C836AD217F09BF00915F24 /* ViewController.swift */,
 				42C836AF217F09BF00915F24 /* Main.storyboard */,
 				42C836B2217F09C000915F24 /* Assets.xcassets */,
 				42C836B4217F09C000915F24 /* LaunchScreen.storyboard */,
 				42C836B7217F09C000915F24 /* Info.plist */,
+				42C836BE217F0ED800915F24 /* DemoNotificationDelegate.swift */,
 			);
 			path = NativeNotificationTest;
 			sourceTree = "<group>";
@@ -96,6 +101,11 @@
 				TargetAttributes = {
 					42C836A7217F09BF00915F24 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -135,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42C836BF217F0ED800915F24 /* DemoNotificationDelegate.swift in Sources */,
 				42C836AE217F09BF00915F24 /* ViewController.swift in Sources */,
 				42C836AC217F09BF00915F24 /* AppDelegate.swift in Sources */,
 			);
@@ -282,13 +293,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NativeNotificationTest/NativeNotificationTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9R2X4986T9;
 				INFOPLIST_FILE = NativeNotificationTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.demo.NativeNotificationTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thoth.platform.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -299,13 +312,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NativeNotificationTest/NativeNotificationTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9R2X4986T9;
 				INFOPLIST_FILE = NativeNotificationTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.demo.NativeNotificationTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thoth.platform.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -7,15 +7,47 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let center = UNUserNotificationCenter.current()
+    
+    // delegate for receiving or delivering notification
+    let notificationDelegate = DemoNotificationDelegate()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        center.delegate = notificationDelegate
+        
+        // MARK: set authorization
+        //詢問使用者是否開啟權限
+        let options: UNAuthorizationOptions = [.badge,.alert,.sound]
+        center.getNotificationSettings { (settings) in
+            switch settings.authorizationStatus{
+            //第一次開啟時，還沒決定推播的權限狀態
+            case .notDetermined:
+                self.center.requestAuthorization(options: options) {
+                    (granted, error) in
+                    if !granted {
+                        print("Something went wrong")
+                    }
+                }
+            case .authorized:
+                DispatchQueue.main.async(execute: {
+                    UIApplication.shared.registerForRemoteNotifications()
+                })
+            case .denied:
+                print("cannot use notifications cuz the user has denied permissions")
+            //暫時同意，臨時性的授權
+            case .provisional:
+                print("The application is provisionally authorized to post noninterruptive user notifications.")
+            }
+        }
+        
         return true
     }
 
@@ -40,7 +72,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    //取得device token
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        print("Device Token = \(deviceTokenString)")
+    }
 
-
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("error = \(error)")
+    }
 }
 
